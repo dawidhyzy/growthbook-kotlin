@@ -2,9 +2,9 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackOutput
 import org.jetbrains.kotlin.gradle.targets.js.yarn.yarn
 
 plugins {
-    kotlin("multiplatform")
+    alias(libs.plugins.kotlin.multiplatform)
     id("com.android.library")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.serialization)
     id("org.jetbrains.dokka") version "1.9.10"
 }
 
@@ -13,7 +13,6 @@ version = "1.1.64"
 
 kotlin {
 
-    val ktorVersion = "3.0.3"
     val serializationVersion = "1.3.3"
     val kryptoVersion = "2.7.0"
 
@@ -65,7 +64,7 @@ kotlin {
                 implementation(
                     "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion"
                 )
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation(libs.ktor.serialization.kotlinx.json)
             }
         }
         val androidMain by getting {
@@ -79,13 +78,13 @@ kotlin {
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.2")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
-                implementation("io.ktor:ktor-client-mock:$ktorVersion")
+                implementation(libs.ktor.client.mock)
             }
         }
 
         val jvmMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-java:$ktorVersion")
+                implementation(libs.ktor.client.java)
                 implementation("com.soywiz.korlibs.krypto:krypto-jvm:$kryptoVersion")
             }
         }

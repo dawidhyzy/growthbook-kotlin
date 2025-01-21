@@ -6,10 +6,6 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:7.4.2")
-
-        val kotlinVersion = "2.1.0"
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        classpath ("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
     }
 }
 
@@ -26,6 +22,8 @@ allprojects {
 }
 
 plugins {
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlin.serialization)
     id("org.jetbrains.kotlinx.kover") version "0.5.0"
     id("signing")
     id("maven-publish")
